@@ -36,10 +36,11 @@ function LanguageProvider({ children }) {
         ? translations[1].language
         : translations[0].language;
     setLanguage(newLanguage);
+
     setWords(
       newLanguage === translations[0].language
-        ? translations[1].words
-        : translations[0].words
+        ? translations[0].words
+        : translations[1].words
     );
   };
 
@@ -52,5 +53,7 @@ function LanguageProvider({ children }) {
   );
 }
 
-const useLanguage = () => { useContext(languageContext)}
-export { LanguageProvider , useLanguage};
+const useLanguage = () => {
+  return useContext(languageContext);
+};
+export { LanguageProvider, useLanguage };

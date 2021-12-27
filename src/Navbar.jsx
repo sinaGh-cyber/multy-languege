@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useLanguage } from './context';
+import { useContext } from 'react';
+import { createContext } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 
 export default function Navbar() {
-  const [language, changeLanguage, words] = useLanguage();
-
+  const { language, changeLanguage, words } = useLanguage();
   return (
     <ul className="nav nav-tabs">
       <li className="nav-item">
