@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { createContext } from 'react';
 
 const translations = [
@@ -51,4 +51,6 @@ function LanguageProvider({ children }) {
     </>
   );
 }
-export { LanguageProvider };
+
+const useLanguage = () => { useContext(languageContext)}
+export { LanguageProvider , useLanguage};
