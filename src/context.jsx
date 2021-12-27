@@ -1,30 +1,54 @@
-import React from "react";
-import { createContext } from "react";
+import React, { useState } from 'react';
+import { createContext } from 'react';
 
 const translations = [
   {
-    language: "English",
+    language: 'English',
     words: {
-      home: "Home",
-      events: "Events",
-      aboutUs: "About Us",
-      contactUs: "Contact Us",
-      language: "Language",
+      home: 'Home',
+      events: 'Events',
+      aboutUs: 'About Us',
+      contactUs: 'Contact Us',
+      language: 'Language',
     },
   },
   {
-    language: "Persian",
+    language: 'Persian',
     words: {
-      home: "خانه",
-      events: "رویداد ها",
-      aboutUs: "درباره ما",
-      contactUs: "تماس با ما",
-      language: "زبان",
+      home: 'خانه',
+      events: 'رویداد ها',
+      aboutUs: 'درباره ما',
+      contactUs: 'تماس با ما',
+      language: 'زبان',
     },
   },
 ];
 
+const languageContext = createContext(undefined);
+
 function LanguageProvider({ children }) {
-  return <>{props.children}</>;
+  const [language, setLanguage] = useState(translations[0].language);
+  const [words, setWords] = useState(translations[0].words);
+
+  const changeLanguage = () => {
+    const newLanguage =
+      language === translations[0].language
+        ? translations[1].language
+        : translations[0].language;
+    setLanguage(newLanguage);
+    setWords(
+      newLanguage === translations[0].language
+        ? translations[1].words
+        : translations[0].words
+    );
+  };
+
+  return (
+    <>
+      <languageContext.Provider value={{ language, changeLanguage, words }}>
+        {children}
+      </languageContext.Provider>
+    </>
+  );
 }
 export { LanguageProvider };
